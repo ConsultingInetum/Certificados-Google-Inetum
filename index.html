@@ -1,0 +1,2551 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Plan de Formación Google Cloud · Inetum</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* Inetum accents (used sparingly) */
+    --i-blue: #232D4B;
+    --i-magenta: #E20074;
+    --i-yellow: #F5F340;
+    --i-yellow-soft: #FEFCE8;
+
+    /* Modern neutrals (Apple-inspired) */
+    --bg: #FBFBFD;
+    --surface: #FFFFFF;
+    --ink-1: #1D1D1F;
+    --ink-2: #515154;
+    --ink-3: #86868B;
+    --line: #E8E8ED;
+    --line-soft: #F2F2F4;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--ink-1);
+    line-height: 1.5;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: -0.01em;
+  }
+
+  /* Pixel arrow — Inetum signature element */
+  .pixel-arrow {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    position: relative;
+    flex-shrink: 0;
+  }
+  .pixel-arrow span {
+    position: absolute;
+    width: 33.33%;
+    height: 33.33%;
+    background: var(--i-yellow);
+  }
+  .pixel-arrow span:nth-child(1) { top: 0; right: 0; opacity: 1; }
+  .pixel-arrow span:nth-child(2) { top: 0; right: 33.33%; opacity: 0.7; }
+  .pixel-arrow span:nth-child(3) { top: 33.33%; right: 0; opacity: 0.5; }
+  .pixel-arrow span:nth-child(4) { top: 66.66%; right: 33.33%; opacity: 0.7; }
+  .pixel-arrow.blue span { background: var(--i-blue); }
+  .pixel-arrow.magenta span { background: var(--i-magenta); }
+
+  /* =====================================================
+     HERO — compact, Apple-style
+     ===================================================== */
+  .hero {
+    position: relative;
+    padding: 56px 32px 48px;
+    text-align: center;
+    background: var(--bg);
+    overflow: hidden;
+  }
+  .hero-inner {
+    max-width: 920px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 14px 6px 10px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--ink-2);
+    margin-bottom: 28px;
+  }
+  .badge .pixel-arrow { width: 14px; height: 14px; }
+  h1.hero-title {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(40px, 5.5vw, 64px);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.035em;
+    color: var(--ink-1);
+    margin-bottom: 18px;
+  }
+  h1.hero-title em {
+    font-style: italic;
+    font-weight: 600;
+    background: linear-gradient(90deg, var(--i-blue) 0%, var(--i-magenta) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .hero-lede {
+    font-size: 18px;
+    line-height: 1.5;
+    color: var(--ink-2);
+    max-width: 620px;
+    margin: 0 auto 32px;
+    font-weight: 400;
+  }
+  .stats-row {
+    display: inline-flex;
+    align-items: center;
+    gap: 0;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: var(--surface);
+    overflow: hidden;
+  }
+  .stat-cell {
+    padding: 14px 24px;
+    border-right: 1px solid var(--line);
+  }
+  .stat-cell:last-child { border-right: none; }
+  .stat-num {
+    font-family: 'Inter', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--ink-1);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .stat-label {
+    font-size: 11px;
+    color: var(--ink-3);
+    margin-top: 4px;
+    font-weight: 500;
+  }
+
+  /* =====================================================
+     SECTIONS
+     ===================================================== */
+  .section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 56px 24px;
+  }
+  .section-head {
+    text-align: center;
+    margin-bottom: 36px;
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--i-magenta);
+    margin-bottom: 12px;
+  }
+  .eyebrow::before {
+    content: "";
+    display: inline-block;
+    width: 4px;
+    height: 4px;
+    background: var(--i-magenta);
+    border-radius: 50%;
+  }
+  h2.section-title {
+    font-size: clamp(28px, 3.5vw, 40px);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    color: var(--ink-1);
+    margin-bottom: 10px;
+    line-height: 1.1;
+  }
+  .section-sub {
+    font-size: 15px;
+    color: var(--ink-2);
+    line-height: 1.55;
+  }
+
+  /* =====================================================
+     DECISION MAP — dense grid
+     ===================================================== */
+  .decision-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+  .profile-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 22px 20px;
+    transition: all 0.25s;
+    position: relative;
+  }
+  .profile-card:hover {
+    border-color: var(--ink-3);
+    transform: translateY(-2px);
+  }
+  .profile-card.featured {
+    background: var(--ink-1);
+    color: white;
+    border-color: var(--ink-1);
+  }
+  .profile-card.featured::before {
+    content: "★ Mayoritario";
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    background: var(--i-yellow);
+    color: var(--ink-1);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    padding: 3px 8px;
+    border-radius: 100px;
+    text-transform: uppercase;
+  }
+  .profile-letter {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--ink-3);
+    letter-spacing: 0.1em;
+    margin-bottom: 14px;
+  }
+  .profile-card.featured .profile-letter { color: var(--i-yellow); }
+  .profile-name {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: 6px;
+    color: var(--ink-1);
+    letter-spacing: -0.015em;
+  }
+  .profile-card.featured .profile-name { color: white; }
+  .profile-examples {
+    font-size: 12px;
+    color: var(--ink-2);
+    line-height: 1.45;
+    margin-bottom: 18px;
+    min-height: 50px;
+  }
+  .profile-card.featured .profile-examples { color: rgba(255,255,255,0.65); }
+  .path-step {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 0;
+    border-top: 1px solid var(--line-soft);
+    font-size: 12px;
+  }
+  .profile-card.featured .path-step { border-color: rgba(255,255,255,0.1); }
+  .path-step:first-of-type { border-top-color: var(--line); padding-top: 12px; margin-top: 4px; }
+  .profile-card.featured .path-step:first-of-type { border-top-color: rgba(255,255,255,0.15); }
+  .path-num {
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--line);
+    color: var(--ink-3);
+    font-size: 10px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .profile-card.featured .path-num { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.6); }
+  .path-step.priority .path-num { background: var(--i-yellow); color: var(--ink-1); }
+  .profile-card.featured .path-step.priority .path-num { background: var(--i-yellow); color: var(--ink-1); }
+  .path-cert {
+    font-weight: 500;
+    color: var(--ink-1);
+    flex: 1;
+    line-height: 1.3;
+  }
+  .profile-card.featured .path-cert { color: white; }
+  .path-when {
+    font-size: 10px;
+    color: var(--ink-3);
+    font-weight: 500;
+    flex-shrink: 0;
+  }
+  .profile-card.featured .path-when { color: rgba(255,255,255,0.5); }
+
+  /* =====================================================
+     CERTIFICATIONS — compact accordion-style cards
+     ===================================================== */
+  .level-block { margin-bottom: 32px; }
+  .level-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding: 0 4px 14px;
+    margin-bottom: 14px;
+    border-bottom: 1px solid var(--line);
+  }
+  .level-head-left {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+  }
+  .level-num {
+    font-size: 32px;
+    font-weight: 200;
+    color: var(--ink-3);
+    line-height: 1;
+    letter-spacing: -0.04em;
+  }
+  .level-tag {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin-bottom: 2px;
+  }
+  .level-title {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--ink-1);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+  .level-meta {
+    font-size: 12px;
+    color: var(--ink-3);
+    text-align: right;
+    line-height: 1.4;
+  }
+  .level-meta strong {
+    color: var(--ink-1);
+    font-weight: 600;
+  }
+
+  .cert-list {
+    display: grid;
+    gap: 8px;
+  }
+  .cert {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    overflow: hidden;
+    transition: all 0.2s;
+  }
+  .cert:hover {
+    border-color: var(--ink-3);
+  }
+  .cert-summary {
+    display: grid;
+    grid-template-columns: auto 1fr auto auto;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 18px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .cert-icon {
+    width: 32px; height: 32px;
+    border-radius: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .icon-found { background: var(--i-yellow-soft); color: var(--i-blue); border: 1px solid var(--i-yellow); }
+  .icon-assoc { background: var(--i-yellow); color: var(--ink-1); }
+  .icon-prof { background: var(--ink-1); color: var(--i-yellow); }
+  .cert-title-mini {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink-1);
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+  }
+  .cert-tag-mini {
+    font-size: 11px;
+    color: var(--ink-3);
+    margin-top: 2px;
+    font-weight: 400;
+  }
+  .cert-quick-meta {
+    font-size: 11px;
+    color: var(--ink-3);
+    font-weight: 500;
+    text-align: right;
+    line-height: 1.3;
+    white-space: nowrap;
+  }
+  .cert-toggle {
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background: var(--line-soft);
+    color: var(--ink-2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 600;
+    transition: all 0.2s;
+    flex-shrink: 0;
+  }
+  details[open] .cert-toggle {
+    background: var(--ink-1);
+    color: white;
+    transform: rotate(45deg);
+  }
+  .cert-detail {
+    padding: 0 18px 18px;
+    border-top: 1px solid var(--line-soft);
+    margin-top: 4px;
+    padding-top: 16px;
+  }
+  .cert-pitch {
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--ink-2);
+    margin-bottom: 14px;
+  }
+  .cert-pitch strong {
+    font-weight: 600;
+    color: var(--ink-1);
+    background: var(--i-yellow-soft);
+    padding: 0 3px;
+  }
+  .specs {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+  .spec-item {
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 8px 10px;
+  }
+  .spec-label {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--ink-3);
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+  .spec-value {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--ink-1);
+  }
+  .who-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 12px;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    margin-bottom: 12px;
+  }
+  .who-pixel {
+    width: 16px; height: 16px;
+    flex-shrink: 0;
+    margin-top: 2px;
+    position: relative;
+  }
+  .who-pixel span {
+    position: absolute;
+    width: 33.33%;
+    height: 33.33%;
+    background: var(--i-magenta);
+  }
+  .who-pixel span:nth-child(1) { top: 0; right: 0; }
+  .who-pixel span:nth-child(2) { top: 0; right: 33.33%; opacity: 0.7; }
+  .who-pixel span:nth-child(3) { top: 33.33%; right: 0; opacity: 0.5; }
+  .who-pixel span:nth-child(4) { top: 66.66%; right: 33.33%; opacity: 0.7; }
+  .who-text {
+    font-size: 12px;
+    color: var(--ink-2);
+    line-height: 1.5;
+    flex: 1;
+  }
+  .who-text strong {
+    display: block;
+    font-size: 9px;
+    color: var(--i-magenta);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 3px;
+  }
+  .topics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+  .topic {
+    font-size: 11px;
+    padding: 3px 9px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    color: var(--ink-2);
+    font-weight: 500;
+  }
+
+  /* =====================================================
+     TIMELINE — dark compact section
+     ===================================================== */
+  .timeline-section {
+    background: var(--ink-1);
+    color: white;
+    padding: 56px 24px;
+    margin: 32px 0;
+    border-radius: 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .timeline-section::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg,
+      var(--i-magenta) 0%,
+      var(--i-magenta) 33%,
+      var(--i-yellow) 33%,
+      var(--i-yellow) 66%,
+      transparent 66%);
+  }
+  .timeline-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .timeline-section .eyebrow { color: var(--i-yellow); }
+  .timeline-section .eyebrow::before { background: var(--i-yellow); }
+  .timeline-section h2.section-title { color: white; }
+  .timeline-section h2.section-title em {
+    background: linear-gradient(90deg, var(--i-yellow) 0%, var(--i-magenta) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .timeline-section .section-sub { color: rgba(255,255,255,0.65); }
+  .timeline-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 28px;
+  }
+  .tl-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
+    padding: 22px 20px;
+    transition: all 0.2s;
+  }
+  .tl-card:hover {
+    background: rgba(255,255,255,0.07);
+    border-color: rgba(255,255,255,0.15);
+  }
+  .tl-num {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--i-yellow);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .tl-num::before {
+    content: "";
+    width: 5px; height: 5px;
+    background: var(--i-yellow);
+    border-radius: 50%;
+  }
+  .tl-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    letter-spacing: -0.015em;
+    color: white;
+  }
+  .tl-text {
+    font-size: 13px;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.5;
+  }
+  .tl-text strong {
+    color: white;
+    font-weight: 600;
+  }
+
+  /* =====================================================
+     FAQ — compact two-column
+     ===================================================== */
+  .faq-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+  .faq-item {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 16px 18px;
+    transition: border-color 0.2s;
+  }
+  .faq-item:hover { border-color: var(--ink-3); }
+  .faq-q {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink-1);
+    margin-bottom: 6px;
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+  }
+  .faq-a {
+    font-size: 12px;
+    color: var(--ink-2);
+    line-height: 1.5;
+  }
+
+  /* =====================================================
+     FOOTER — minimal
+     ===================================================== */
+  footer {
+    border-top: 1px solid var(--line);
+    padding: 32px 24px 40px;
+    margin-top: 40px;
+    text-align: center;
+  }
+  .footer-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink-1);
+  }
+  .footer-brand .pixel-arrow { width: 14px; height: 14px; }
+  .footer-brand .divider {
+    width: 1px;
+    height: 14px;
+    background: var(--line);
+  }
+  .footer-brand .partner {
+    font-weight: 500;
+    color: var(--ink-3);
+    font-size: 12px;
+  }
+  .footer-meta {
+    font-size: 11px;
+    color: var(--ink-3);
+    letter-spacing: 0.05em;
+  }
+
+  /* =====================================================
+     RESPONSIVE
+     ===================================================== */
+  @media (max-width: 900px) {
+    .decision-grid, .timeline-grid { grid-template-columns: 1fr 1fr; }
+    .faq-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) {
+    .hero { padding: 40px 20px 36px; }
+    .section { padding: 40px 18px; }
+    .decision-grid, .timeline-grid { grid-template-columns: 1fr; }
+    .stats-row { flex-direction: column; }
+    .stat-cell { border-right: none; border-bottom: 1px solid var(--line); }
+    .stat-cell:last-child { border-bottom: none; }
+    .specs { grid-template-columns: 1fr 1fr; }
+    .level-head { flex-direction: column; align-items: flex-start; gap: 8px; }
+    .level-meta { text-align: left; }
+    .cert-summary { grid-template-columns: auto 1fr auto; gap: 10px; }
+    .cert-quick-meta { display: none; }
+  }
+
+  /* =====================================================
+     CERT LINKS — botoncitos para acceder a recursos oficiales
+     ===================================================== */
+  .cert-links {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid var(--line-soft);
+  }
+  .cert-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 11px;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--ink-2);
+    text-decoration: none;
+    transition: all 0.15s;
+  }
+  .cert-link:hover {
+    background: var(--ink-1);
+    color: white;
+    border-color: var(--ink-1);
+    transform: translateY(-1px);
+  }
+  .cert-link .arrow { font-size: 10px; opacity: 0.6; }
+  .cert-link.primary {
+    background: var(--i-yellow);
+    border-color: var(--i-yellow);
+    color: var(--ink-1);
+    font-weight: 600;
+  }
+  .cert-link.primary:hover {
+    background: var(--ink-1);
+    color: var(--i-yellow);
+    border-color: var(--ink-1);
+  }
+
+  /* =====================================================
+     HOW-TO STEPS — Cómo sacarse una certificación paso a paso
+     ===================================================== */
+  .howto-section {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 24px;
+    padding: 48px 40px;
+    margin: 56px 0 32px;
+  }
+  .howto-intro {
+    max-width: 720px;
+    margin: 0 auto 36px;
+    text-align: center;
+  }
+  .howto-intro p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--ink-2);
+    margin-top: 8px;
+  }
+  .howto-intro p strong {
+    color: var(--ink-1);
+    background: var(--i-yellow-soft);
+    padding: 1px 4px;
+  }
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    margin-bottom: 32px;
+  }
+  .step-card {
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 22px;
+    position: relative;
+  }
+  .step-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px; height: 28px;
+    background: var(--i-yellow);
+    color: var(--ink-1);
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .step-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ink-1);
+    margin-bottom: 6px;
+    letter-spacing: -0.01em;
+  }
+  .step-text {
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--ink-2);
+  }
+  .step-text strong { color: var(--ink-1); font-weight: 600; }
+  .step-text a {
+    color: var(--i-magenta);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--i-magenta);
+  }
+  .step-text a:hover { color: var(--i-blue); border-color: var(--i-blue); }
+  .step-text code {
+    font-family: 'SF Mono', Monaco, Consolas, monospace;
+    font-size: 11px;
+    background: var(--line-soft);
+    padding: 1px 5px;
+    border-radius: 4px;
+    color: var(--ink-1);
+  }
+  .step-tip {
+    margin-top: 10px;
+    padding: 10px 12px;
+    background: var(--i-yellow-soft);
+    border-left: 3px solid var(--i-yellow);
+    border-radius: 6px;
+    font-size: 12px;
+    line-height: 1.5;
+    color: var(--ink-2);
+  }
+  .step-tip strong { color: var(--ink-1); }
+
+  /* Step 1 — ocupa las dos columnas y rompe el padding del howto-section para usar todo el ancho */
+  .step-card-wide {
+    grid-column: 1 / -1;
+    margin-left: -40px;
+    margin-right: -40px;
+    border-radius: 0;
+    padding: 22px 40px;
+  }
+
+  /* Cert matrix table — espejo del Excel */
+  .cert-matrix-wrap {
+    margin-top: 16px;
+    overflow-x: auto;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    -webkit-overflow-scrolling: touch;
+  }
+  .cert-matrix {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 11.5px;
+    table-layout: fixed;
+  }
+  .cert-matrix thead th {
+    background: var(--bg);
+    color: var(--ink-2);
+    font-weight: 600;
+    font-size: 10px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    padding: 10px 6px;
+    text-align: left;
+    border-bottom: 1.5px solid var(--ink-1);
+    vertical-align: bottom;
+    line-height: 1.2;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+  .cert-matrix thead th.col-x,
+  .cert-matrix thead th.col-num {
+    text-align: center;
+  }
+  .cert-matrix .col-tipo       { width: 70px; }
+  .cert-matrix .col-perfil-desc{ width: 160px; }
+  .cert-matrix .col-name       { width: auto; }
+  .cert-matrix .col-num        { width: 44px; }
+  .cert-matrix .col-x          { width: 56px; font-size: 9.5px; }
+
+  .cert-matrix tbody td {
+    padding: 8px 6px;
+    border-bottom: 1px solid var(--line-soft);
+    vertical-align: middle;
+  }
+  .cert-matrix tbody tr:hover td:not(.tipo-cell):not(.perfil-cell) {
+    background: var(--i-yellow-soft);
+  }
+  .cert-matrix .tipo-cell {
+    background: var(--bg);
+    border-right: 1px solid var(--line);
+    text-align: center;
+    vertical-align: middle;
+    padding: 14px 6px;
+  }
+  .cert-matrix .tipo-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px; height: 30px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    margin: 0 auto 6px;
+  }
+  .cert-matrix .tipo-found .tipo-badge { background: var(--i-yellow-soft); color: var(--i-blue); border: 1px solid var(--i-yellow); }
+  .cert-matrix .tipo-assoc .tipo-badge { background: var(--i-yellow); color: var(--ink-1); }
+  .cert-matrix .tipo-prof  .tipo-badge { background: var(--ink-1); color: var(--i-yellow); }
+  .cert-matrix .tipo-name {
+    font-size: 10.5px;
+    font-weight: 600;
+    color: var(--ink-1);
+    line-height: 1.2;
+  }
+  .cert-matrix .perfil-cell {
+    background: var(--bg);
+    border-right: 1px solid var(--line);
+    color: var(--ink-3);
+    font-size: 10.5px;
+    line-height: 1.4;
+    vertical-align: top;
+    padding: 14px 10px;
+  }
+  .cert-matrix .name-cell {
+    font-weight: 500;
+    padding-left: 10px;
+  }
+  .cert-matrix .name-cell a {
+    color: var(--i-blue);
+    text-decoration: none;
+    border-bottom: 1px dotted transparent;
+    transition: all 0.15s;
+  }
+  .cert-matrix .name-cell a:hover {
+    color: var(--i-magenta);
+    border-bottom-color: var(--i-magenta);
+  }
+  .cert-matrix .num-cell {
+    text-align: center;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    color: var(--ink-1);
+  }
+  .cert-matrix .num-asis {
+    background: var(--i-yellow-soft);
+  }
+  .cert-matrix .num-tobe {
+    color: var(--ink-3);
+    font-weight: 400;
+  }
+  .cert-matrix .num-zero {
+    color: var(--ink-3);
+    font-weight: 400;
+  }
+  .cert-matrix .x-cell {
+    text-align: center;
+  }
+  .cert-matrix .x-mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    background: var(--ink-1);
+    color: var(--i-yellow);
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
+  }
+  .cert-matrix .spacer-row td {
+    border-bottom: none;
+    padding: 0;
+    height: 4px;
+    background: var(--bg);
+  }
+  .cert-matrix tfoot .total-row td {
+    background: var(--ink-1);
+    color: white;
+    font-weight: 700;
+    padding: 11px 6px;
+    border: none;
+  }
+  .cert-matrix tfoot .total-label {
+    text-align: right;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding-right: 10px;
+  }
+  .cert-matrix tfoot .total-num {
+    color: var(--i-yellow);
+    font-size: 13px;
+  }
+
+  .howto-foundationals {
+    margin-top: 36px;
+    padding-top: 32px;
+    border-top: 1px solid var(--line);
+  }
+  .howto-foundationals-head {
+    text-align: center;
+    margin-bottom: 28px;
+  }
+  .howto-foundationals-head .eyebrow {
+    color: var(--i-magenta);
+  }
+  .howto-foundationals-head .eyebrow::before {
+    background: var(--i-magenta);
+  }
+  .howto-foundationals-head h3 {
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    color: var(--ink-1);
+    margin-top: 6px;
+  }
+  .found-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  .found-card {
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 24px;
+  }
+  .found-card-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--line);
+  }
+  .found-icon {
+    width: 36px; height: 36px;
+    border-radius: 10px;
+    background: var(--i-yellow-soft);
+    color: var(--i-blue);
+    border: 1px solid var(--i-yellow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+  .found-card h4 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--ink-1);
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+  }
+  .found-card h4 + div {
+    font-size: 11px;
+    color: var(--ink-3);
+    margin-top: 2px;
+  }
+  .found-stages {
+    list-style: none;
+    counter-reset: stage;
+    padding: 0;
+    margin: 0;
+  }
+  .found-stages li {
+    counter-increment: stage;
+    position: relative;
+    padding: 10px 0 10px 32px;
+    font-size: 12.5px;
+    line-height: 1.5;
+    color: var(--ink-2);
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .found-stages li:last-child { border-bottom: none; }
+  .found-stages li::before {
+    content: counter(stage);
+    position: absolute;
+    left: 0; top: 11px;
+    width: 22px; height: 22px;
+    background: var(--ink-1);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 700;
+  }
+  .found-stages li strong { color: var(--ink-1); font-weight: 600; }
+  .found-stages li .when {
+    display: inline-block;
+    margin-left: 6px;
+    padding: 1px 7px;
+    background: var(--i-yellow-soft);
+    border: 1px solid var(--i-yellow);
+    border-radius: 100px;
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--ink-2);
+  }
+  .found-cta {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px solid var(--line-soft);
+  }
+
+  /* Mini cert cards — Associate & Professional resumidos */
+  .mini-cert-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  .mini-cert {
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+  }
+  .mini-cert-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink-1);
+    letter-spacing: -0.01em;
+    margin-bottom: 4px;
+  }
+  .mini-cert-desc {
+    font-size: 11.5px;
+    color: var(--ink-3);
+    line-height: 1.45;
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .mini-stages {
+    list-style: none;
+    counter-reset: ms;
+    padding: 0;
+    margin: 0 0 14px 0;
+    flex: 1;
+  }
+  .mini-stages li {
+    counter-increment: ms;
+    position: relative;
+    padding: 4px 0 4px 22px;
+    font-size: 11.5px;
+    line-height: 1.45;
+    color: var(--ink-2);
+  }
+  .mini-stages li::before {
+    content: counter(ms);
+    position: absolute;
+    left: 0; top: 5px;
+    width: 16px; height: 16px;
+    background: var(--ink-1);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    font-weight: 700;
+  }
+  .mini-cta {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-top: auto;
+    padding-top: 8px;
+  }
+  .mini-cta .cert-link {
+    padding: 5px 10px;
+    font-size: 10.5px;
+  }
+
+  @media (max-width: 760px) {
+    .steps-grid { grid-template-columns: 1fr; }
+    .found-grid { grid-template-columns: 1fr; }
+    .mini-cert-grid { grid-template-columns: 1fr; }
+    .howto-section { padding: 32px 22px; }
+    .step-card-wide { margin-left: -22px; margin-right: -22px; padding: 22px; }
+    .cert-matrix { font-size: 10.5px; table-layout: auto; min-width: 720px; }
+  }
+
+</style>
+</head>
+<body>
+
+<!-- =====================================================
+     HERO
+     ===================================================== -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="badge">
+      <span class="pixel-arrow">
+        <span></span><span></span><span></span><span></span>
+      </span>
+      Inetum × Google Cloud · Plan 2026-2027
+    </div>
+    <h1 class="hero-title">
+      Catálogo de <em>certificaciones</em><br>de Google Cloud
+    </h1>
+       <div class="stats-row">
+      <div class="stat-cell">
+        <div class="stat-num">11</div>
+        <div class="stat-label">Certificaciones</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">3</div>
+        <div class="stat-label">Niveles</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">6</div>
+        <div class="stat-label">Perfiles</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- =====================================================
+     DECISION MAP
+     ===================================================== -->
+<div class="section">
+  <div class="section-head">
+    <span class="eyebrow">Mapa de decisión</span>
+    <h2 class="section-title">¿Qué ruta encaja con tu perfil?</h2>
+    <p class="section-sub">Encuentra tu perfil y sigue el camino sugerido. Son orientaciones, no obligaciones.</p>
+  </div>
+
+  <div class="decision-grid">
+
+    <div class="profile-card featured">
+      <div class="profile-letter">A · CONSULTORÍA</div>
+      <div class="profile-name">Consultoría<br>y Negocio</div>
+      <div class="profile-examples">Funcionales, PMs, líderes de equipo. Sheets, Looker Studio, Apps Script, dashboards.</div>
+      <div class="path-step priority">
+        <div class="path-num">1</div>
+        <div class="path-cert">Generative AI Leader</div>
+        <div class="path-when">Founda.</div>
+      </div>
+      <div class="path-step">
+        <div class="path-num">2</div>
+        <div class="path-cert">Cloud Digital Leader</div>
+        <div class="path-when">Founda.</div>
+      </div>
+    </div>
+
+    <div class="profile-card">
+      <div class="profile-letter">B · DATOS</div>
+      <div class="profile-name">Datos<br>y Analytics</div>
+      <div class="profile-examples">BigQuery, Looker, dashboards complejos, modelos de datos, ETL, reporting.</div>
+      <div class="path-step priority">
+        <div class="path-num">1</div>
+        <div class="path-cert">Generative AI Leader</div>
+        <div class="path-when">Founda.</div>
+      </div>
+      <div class="path-step">
+        <div class="path-num">2</div>
+        <div class="path-cert">Data Practitioner</div>
+        <div class="path-when">Assoc.</div>
+      </div>
+      <div class="path-step">
+        <div class="path-num">3</div>
+        <div class="path-cert">Data Engineer</div>
+        <div class="path-when">Prof.</div>
+      </div>
+    </div>
+
+    <div class="profile-card">
+      <div class="profile-letter">C · DESARROLLO</div>
+      <div class="profile-name">Desarrollo<br>y Cloud</div>
+      <div class="profile-examples">Developers, backend, despliegue de aplicaciones, APIs, infraestructura.</div>
+      <div class="path-step priority">
+        <div class="path-num">1</div>
+        <div class="path-cert">Cloud Digital Leader</div>
+        <div class="path-when">Founda.</div>
+      </div>
+      <div class="path-step">
+        <div class="path-num">2</div>
+        <div class="path-cert">Cloud Engineer</div>
+        <div class="path-when">Assoc.</div>
+      </div>
+      <div class="path-step">
+        <div class="path-num">3</div>
+        <div class="path-cert">Cloud Developer / Architect</div>
+        <div class="path-when">Prof.</div>
+      </div>
+    </div>
+
+    <div class="profile-card">
+      <div class="profile-letter">D · IA / ML</div>
+      <div class="profile-name">IA<br>y Machine Learning</div>
+      <div class="profile-examples">Modelos de IA, Vertex AI, RAG, agentes, MLOps, soluciones de inteligencia artificial.</div>
+      <div class="path-step priority">
+        <div class="path-num">1</div>
+        <div class="path-cert">Generative AI Leader</div>
+        <div class="path-when">Founda.</div>
+      </div>
+      <div class="path-step">
+        <div class="path-num">2</div>
+        <div class="path-cert">Cloud Engineer</div>
+        <div class="path-when">Assoc.</div>
+      </div>
+      <div class="path-step">
+        <div class="path-num">3</div>
+        <div class="path-cert">ML Engineer</div>
+        <div class="path-when">Prof.</div>
+      </div>
+    </div>
+
+    <div class="profile-card">
+      <div class="profile-letter">E · DEVOPS</div>
+      <div class="profile-name">DevOps e<br>Infraestructura</div>
+      <div class="profile-examples">SRE, operaciones, CI/CD, automatización, monitorización, producción.</div>
+      <div class="path-step priority">
+        <div class="path-num">1</div>
+        <div class="path-cert">Cloud Digital Leader</div>
+        <div class="path-when">Founda.</div>
+      </div>
+      <div class="path-step">
+        <div class="path-num">2</div>
+        <div class="path-cert">Cloud Engineer</div>
+        <div class="path-when">Assoc.</div>
+      </div>
+      <div class="path-step">
+        <div class="path-num">3</div>
+        <div class="path-cert">Cloud DevOps Engineer</div>
+        <div class="path-when">Prof.</div>
+      </div>
+    </div>
+
+    <div class="profile-card">
+      <div class="profile-letter">F · SEGURIDAD</div>
+      <div class="profile-name">Seguridad<br>y Workspace</div>
+      <div class="profile-examples">Seguridad, redes, administración de Google Workspace, IT corporativa.</div>
+      <div class="path-step priority">
+        <div class="path-num">1</div>
+        <div class="path-cert">Cloud Digital Leader</div>
+        <div class="path-when">Founda.</div>
+      </div>
+      <div class="path-step">
+        <div class="path-num">2</div>
+        <div class="path-cert">Workspace Admin</div>
+        <div class="path-when">Assoc.</div>
+      </div>
+      <div class="path-step">
+        <div class="path-num">3</div>
+        <div class="path-cert">Security / Network</div>
+        <div class="path-when">Prof.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- =====================================================
+     CERTIFICATIONS — collapsible accordion
+     ===================================================== -->
+<div class="section">
+  <div class="section-head">
+    <span class="eyebrow">Catálogo completo</span>
+    <h2 class="section-title">Todas las certificaciones</h2>
+    <p class="section-sub">Pincha en cualquiera para ver el detalle: duración, examen, contenidos y para quién encaja mejor.</p>
+  </div>
+
+  <!-- ========== FOUNDATIONAL ========== -->
+  <div class="level-block">
+    <div class="level-head">
+      <div class="level-head-left">
+        <div class="level-num">01</div>
+        <div>
+          <div class="level-tag">Nivel · Foundational</div>
+          <div class="level-title">Para empezar</div>
+        </div>
+      </div>
+      <div class="level-meta"><strong>90 min · ≈$99</strong><br>Sin requisitos · 3 años</div>
+    </div>
+
+    <div class="cert-list">
+
+      <details class="cert">
+        <summary class="cert-summary">
+          <div class="cert-icon icon-found">F</div>
+          <div>
+            <div class="cert-title-mini">Cloud Digital Leader</div>
+            <div class="cert-tag-mini">La más generalista · perfecta para empezar</div>
+          </div>
+          <div class="cert-quick-meta">90 min<br>50–60 preg.</div>
+          <div class="cert-toggle">+</div>
+        </summary>
+        <div class="cert-detail">
+          <p class="cert-pitch">Visión amplia del cloud y de los productos, servicios y casos de uso de Google Cloud. Es <strong>conceptual, no técnica</strong>: no hay que escribir código ni hacer labs.</p>
+          <div class="specs">
+            <div class="spec-item"><div class="spec-label">Duración</div><div class="spec-value">90 min</div></div>
+            <div class="spec-item"><div class="spec-label">Preguntas</div><div class="spec-value">50–60</div></div>
+            <div class="spec-item"><div class="spec-label">Aprobado</div><div class="spec-value">≈70%</div></div>
+            <div class="spec-item"><div class="spec-label">Estudio</div><div class="spec-value">1–2 meses</div></div>
+          </div>
+          <div class="who-row">
+            <div class="who-pixel"><span></span><span></span><span></span><span></span></div>
+            <div class="who-text">
+              <strong>Para quién encaja</strong>
+              Cualquier perfil — negocio, IA, data, arquitectura, devops, seguridad, workspace. Es la certificación universal y suele ser la primera de todos.
+            </div>
+          </div>
+          <div class="topics">
+            <span class="topic">Conceptos cloud</span>
+            <span class="topic">Innovación digital</span>
+            <span class="topic">Infraestructura GCP</span>
+            <span class="topic">Datos en la nube</span>
+            <span class="topic">IA y ML básicos</span>
+            <span class="topic">Modernización apps</span>
+            <span class="topic">Seguridad y trust</span>
+          </div>
+          <div class="cert-links">
+            <a href="https://cloud.google.com/learn/certification/cloud-digital-leader" class="cert-link primary" target="_blank" rel="noopener">Página oficial <span class="arrow">↗</span></a>
+            <a href="https://www.skills.google/paths/9" class="cert-link" target="_blank" rel="noopener">Learning path gratuito <span class="arrow">↗</span></a>
+            <a href="https://cloud.google.com/learn/certification/guides/cloud-digital-leader" class="cert-link" target="_blank" rel="noopener">Guía de examen <span class="arrow">↗</span></a>
+          </div>
+        </div>
+      </details>
+
+      <details class="cert">
+        <summary class="cert-summary">
+          <div class="cert-icon icon-found">F</div>
+          <div>
+            <div class="cert-title-mini">Generative AI Leader</div>
+            <div class="cert-tag-mini">IA generativa desde una mirada estratégica</div>
+          </div>
+          <div class="cert-quick-meta">90 min<br>50–60 preg.</div>
+          <div class="cert-toggle">+</div>
+        </summary>
+        <div class="cert-detail">
+          <p class="cert-pitch">Estrategia y liderazgo en IA generativa. Cómo integrar Gemini, Vertex AI, RAG y agentes en una organización, con foco en <strong>casos de negocio y uso responsable</strong>. No es hands-on.</p>
+          <div class="specs">
+            <div class="spec-item"><div class="spec-label">Duración</div><div class="spec-value">90 min</div></div>
+            <div class="spec-item"><div class="spec-label">Preguntas</div><div class="spec-value">50–60</div></div>
+            <div class="spec-item"><div class="spec-label">Aprobado</div><div class="spec-value">75%</div></div>
+            <div class="spec-item"><div class="spec-label">Estudio</div><div class="spec-value">2–4 sem.</div></div>
+          </div>
+          <div class="who-row">
+            <div class="who-pixel"><span></span><span></span><span></span><span></span></div>
+            <div class="who-text">
+              <strong>Para quién encaja</strong>
+              Especialmente para perfiles IA, pero también muy adecuada para perfiles de consultoría, negocio o cualquiera que quiera incorporar fundamentos de IA generativa. Es la certificación que Inetum está priorizando.
+            </div>
+          </div>
+          <div class="topics">
+            <span class="topic">IA generativa</span>
+            <span class="topic">Gemini</span>
+            <span class="topic">Vertex AI</span>
+            <span class="topic">RAG</span>
+            <span class="topic">Agentes</span>
+            <span class="topic">IA responsable</span>
+            <span class="topic">Casos de negocio</span>
+          </div>
+          <div class="cert-links">
+            <a href="https://cloud.google.com/learn/certification/generative-ai-leader" class="cert-link primary" target="_blank" rel="noopener">Página oficial <span class="arrow">↗</span></a>
+            <a href="https://www.skills.google/paths/1951" class="cert-link" target="_blank" rel="noopener">Learning path gratuito <span class="arrow">↗</span></a>
+            <a href="https://services.google.com/fh/files/misc/generative_ai_leader_study_guide_english.pdf" class="cert-link" target="_blank" rel="noopener">Guía de examen <span class="arrow">↗</span></a>
+          </div>
+        </div>
+      </details>
+
+    </div>
+  </div>
+
+  <!-- ========== ASSOCIATE ========== -->
+  <div class="level-block">
+    <div class="level-head">
+      <div class="level-head-left">
+        <div class="level-num">02</div>
+        <div>
+          <div class="level-tag">Nivel · Associate</div>
+          <div class="level-title">Para consolidar</div>
+        </div>
+      </div>
+      <div class="level-meta"><strong>120 min · ≈$125</strong><br>~6 meses exp · 3 años</div>
+    </div>
+
+    <div class="cert-list">
+
+      <details class="cert">
+        <summary class="cert-summary">
+          <div class="cert-icon icon-assoc">A</div>
+          <div>
+            <div class="cert-title-mini">Associate Cloud Engineer</div>
+            <div class="cert-tag-mini">El paso natural tras Cloud Digital Leader</div>
+          </div>
+          <div class="cert-quick-meta">120 min<br>50–60 preg.</div>
+          <div class="cert-toggle">+</div>
+        </summary>
+        <div class="cert-detail">
+          <p class="cert-pitch">Despliegue y operación de aplicaciones en GCP. Hay que <strong>saber usar la consola, gcloud CLI, configurar VPCs, IAM, monitorizar</strong>. Es la base técnica para todas las Professional.</p>
+          <div class="specs">
+            <div class="spec-item"><div class="spec-label">Duración</div><div class="spec-value">120 min</div></div>
+            <div class="spec-item"><div class="spec-label">Preguntas</div><div class="spec-value">50–60</div></div>
+            <div class="spec-item"><div class="spec-label">Aprobado</div><div class="spec-value">70%</div></div>
+            <div class="spec-item"><div class="spec-label">Estudio</div><div class="spec-value">2–3 meses</div></div>
+          </div>
+          <div class="who-row">
+            <div class="who-pixel"><span></span><span></span><span></span><span></span></div>
+            <div class="who-text">
+              <strong>Para quién encaja</strong>
+              Perfiles IA y arquitectura. Buena para cualquier perfil técnico que quiera consolidar base GCP antes de saltar a una Professional.
+            </div>
+          </div>
+          <div class="topics">
+            <span class="topic">Compute Engine</span>
+            <span class="topic">GKE</span>
+            <span class="topic">Cloud Run</span>
+            <span class="topic">Almacenamiento</span>
+            <span class="topic">VPC</span>
+            <span class="topic">IAM</span>
+            <span class="topic">Monitorización</span>
+          </div>
+          <div class="cert-links">
+            <a href="https://cloud.google.com/certification/cloud-engineer" class="cert-link primary" target="_blank" rel="noopener">Página oficial <span class="arrow">↗</span></a>
+            <a href="https://www.skills.google/paths/11" class="cert-link" target="_blank" rel="noopener">Learning path gratuito <span class="arrow">↗</span></a>
+            <a href="https://cloud.google.com/learn/certification/guides/cloud-engineer" class="cert-link" target="_blank" rel="noopener">Guía de examen <span class="arrow">↗</span></a>
+          </div>
+        </div>
+      </details>
+
+      <details class="cert">
+        <summary class="cert-summary">
+          <div class="cert-icon icon-assoc">A</div>
+          <div>
+            <div class="cert-title-mini">Google Workspace Administrator</div>
+            <div class="cert-tag-mini">Específica para perfiles workspace</div>
+          </div>
+          <div class="cert-quick-meta">120 min<br>50–60 preg.</div>
+          <div class="cert-toggle">+</div>
+        </summary>
+        <div class="cert-detail">
+          <p class="cert-pitch">Administración de Google Workspace: cuentas, seguridad, dispositivos, compliance, integración con sistemas corporativos. Para quien gestiona el día a día de Workspace.</p>
+          <div class="specs">
+            <div class="spec-item"><div class="spec-label">Duración</div><div class="spec-value">120 min</div></div>
+            <div class="spec-item"><div class="spec-label">Preguntas</div><div class="spec-value">50–60</div></div>
+            <div class="spec-item"><div class="spec-label">Aprobado</div><div class="spec-value">70%</div></div>
+            <div class="spec-item"><div class="spec-label">Estudio</div><div class="spec-value">1–2 meses</div></div>
+          </div>
+          <div class="who-row">
+            <div class="who-pixel"><span></span><span></span><span></span><span></span></div>
+            <div class="who-text">
+              <strong>Para quién encaja</strong>
+              Perfiles workspace e IT corporativa que ya gestionen entornos colaborativos.
+            </div>
+          </div>
+          <div class="topics">
+            <span class="topic">Gestión de usuarios</span>
+            <span class="topic">Seguridad</span>
+            <span class="topic">Compliance</span>
+            <span class="topic">Dispositivos</span>
+            <span class="topic">Mail flow</span>
+            <span class="topic">Integraciones</span>
+          </div>
+          <div class="cert-links">
+            <a href="https://cloud.google.com/certification/associate-google-workspace-administrator" class="cert-link primary" target="_blank" rel="noopener">Página oficial <span class="arrow">↗</span></a>
+            <a href="https://www.skills.google/paths/1318" class="cert-link" target="_blank" rel="noopener">Learning path gratuito <span class="arrow">↗</span></a>
+            <a href="https://cloud.google.com/learn/certification/guides/associate-google-workspace-administrator" class="cert-link" target="_blank" rel="noopener">Guía de examen <span class="arrow">↗</span></a>
+          </div>
+        </div>
+      </details>
+
+      <details class="cert">
+        <summary class="cert-summary">
+          <div class="cert-icon icon-assoc">A</div>
+          <div>
+            <div class="cert-title-mini">Associate Data Practitioner</div>
+            <div class="cert-tag-mini">Entrada al mundo de datos en GCP</div>
+          </div>
+          <div class="cert-quick-meta">120 min<br>50–60 preg.</div>
+          <div class="cert-toggle">+</div>
+        </summary>
+        <div class="cert-detail">
+          <p class="cert-pitch">Fundamentos de ingeniería y análisis de datos en GCP: BigQuery, Cloud Storage, Looker, Dataflow. Cubre <strong>preparación, análisis, orquestación y gestión</strong>.</p>
+          <div class="specs">
+            <div class="spec-item"><div class="spec-label">Duración</div><div class="spec-value">120 min</div></div>
+            <div class="spec-item"><div class="spec-label">Preguntas</div><div class="spec-value">50–60</div></div>
+            <div class="spec-item"><div class="spec-label">Aprobado</div><div class="spec-value">70%</div></div>
+            <div class="spec-item"><div class="spec-label">Estudio</div><div class="spec-value">2 meses</div></div>
+          </div>
+          <div class="who-row">
+            <div class="who-pixel"><span></span><span></span><span></span><span></span></div>
+            <div class="who-text">
+              <strong>Para quién encaja</strong>
+              Perfiles data que quieran consolidar fundamentos antes de saltar a la Professional, o personas en transición hacia roles de datos.
+            </div>
+          </div>
+          <div class="topics">
+            <span class="topic">BigQuery</span>
+            <span class="topic">Cloud Storage</span>
+            <span class="topic">Looker</span>
+            <span class="topic">Dataflow</span>
+            <span class="topic">Pipelines</span>
+            <span class="topic">Gestión de datos</span>
+          </div>
+          <div class="cert-links">
+            <a href="https://cloud.google.com/learn/certification/data-practitioner" class="cert-link primary" target="_blank" rel="noopener">Página oficial <span class="arrow">↗</span></a>
+            <a href="https://www.skills.google/paths/1788" class="cert-link" target="_blank" rel="noopener">Learning path gratuito <span class="arrow">↗</span></a>
+            <a href="https://cloud.google.com/learn/certification/guides/data-practitioner" class="cert-link" target="_blank" rel="noopener">Guía de examen <span class="arrow">↗</span></a>
+          </div>
+        </div>
+      </details>
+
+    </div>
+  </div>
+
+  <!-- ========== PROFESSIONAL ========== -->
+  <div class="level-block">
+    <div class="level-head">
+      <div class="level-head-left">
+        <div class="level-num">03</div>
+        <div>
+          <div class="level-tag">Nivel · Professional</div>
+          <div class="level-title">Para especializarse</div>
+        </div>
+      </div>
+      <div class="level-meta"><strong>120 min · ≈$200</strong><br>~3 años exp · 2 años</div>
+    </div>
+
+    <div class="cert-list">
+
+      <details class="cert">
+        <summary class="cert-summary">
+          <div class="cert-icon icon-prof">P</div>
+          <div>
+            <div class="cert-title-mini">Cloud Architect</div>
+            <div class="cert-tag-mini">La más demandada del mercado</div>
+          </div>
+          <div class="cert-quick-meta">120 min<br>50–60 preg.</div>
+          <div class="cert-toggle">+</div>
+        </summary>
+        <div class="cert-detail">
+          <p class="cert-pitch">Diseño de soluciones cloud end-to-end: arquitectura, escalabilidad, seguridad. Es la más reconocida y la que <strong>más impacto suele tener en un CV técnico</strong>.</p>
+          <div class="specs">
+            <div class="spec-item"><div class="spec-label">Duración</div><div class="spec-value">120 min</div></div>
+            <div class="spec-item"><div class="spec-label">Preguntas</div><div class="spec-value">50–60</div></div>
+            <div class="spec-item"><div class="spec-label">Aprobado</div><div class="spec-value">70%</div></div>
+            <div class="spec-item"><div class="spec-label">Estudio</div><div class="spec-value">3–4 meses</div></div>
+          </div>
+          <div class="who-row">
+            <div class="who-pixel"><span></span><span></span><span></span><span></span></div>
+            <div class="who-text">
+              <strong>Para quién encaja</strong>
+              Perfiles IA y arquitectura con experiencia técnica sólida que quieran diseñar soluciones, no solo implementarlas.
+            </div>
+          </div>
+          <div class="cert-links">
+            <a href="https://cloud.google.com/certification/cloud-architect" class="cert-link primary" target="_blank" rel="noopener">Página oficial <span class="arrow">↗</span></a>
+            <a href="https://www.skills.google/paths/12" class="cert-link" target="_blank" rel="noopener">Learning path gratuito <span class="arrow">↗</span></a>
+            <a href="https://cloud.google.com/learn/certification/guides/professional-cloud-architect" class="cert-link" target="_blank" rel="noopener">Guía de examen <span class="arrow">↗</span></a>
+          </div>
+        </div>
+      </details>
+
+      <details class="cert">
+        <summary class="cert-summary">
+          <div class="cert-icon icon-prof">P</div>
+          <div>
+            <div class="cert-title-mini">Cloud Developer</div>
+            <div class="cert-tag-mini">Para desarrollo de aplicaciones cloud-native</div>
+          </div>
+          <div class="cert-quick-meta">120 min<br>60 preg.</div>
+          <div class="cert-toggle">+</div>
+        </summary>
+        <div class="cert-detail">
+          <p class="cert-pitch">Construcción de aplicaciones escalables y seguras en GCP. Cloud Run, GKE, Cloud Functions, gestión de APIs, CI/CD, observabilidad. Es <strong>code-heavy y muy práctica</strong>.</p>
+          <div class="specs">
+            <div class="spec-item"><div class="spec-label">Duración</div><div class="spec-value">120 min</div></div>
+            <div class="spec-item"><div class="spec-label">Preguntas</div><div class="spec-value">60</div></div>
+            <div class="spec-item"><div class="spec-label">Aprobado</div><div class="spec-value">70%</div></div>
+            <div class="spec-item"><div class="spec-label">Estudio</div><div class="spec-value">3 meses</div></div>
+          </div>
+          <div class="who-row">
+            <div class="who-pixel"><span></span><span></span><span></span><span></span></div>
+            <div class="who-text">
+              <strong>Para quién encaja</strong>
+              Perfiles IA y devops, especialmente developers que quieran demostrar que saben construir bien en cloud.
+            </div>
+          </div>
+          <div class="cert-links">
+            <a href="https://cloud.google.com/certification/cloud-developer" class="cert-link primary" target="_blank" rel="noopener">Página oficial <span class="arrow">↗</span></a>
+            <a href="https://www.skills.google/paths/14" class="cert-link" target="_blank" rel="noopener">Learning path gratuito <span class="arrow">↗</span></a>
+            <a href="https://cloud.google.com/learn/certification/guides/cloud-developer" class="cert-link" target="_blank" rel="noopener">Guía de examen <span class="arrow">↗</span></a>
+          </div>
+        </div>
+      </details>
+
+      <details class="cert">
+        <summary class="cert-summary">
+          <div class="cert-icon icon-prof">P</div>
+          <div>
+            <div class="cert-title-mini">Data Engineer</div>
+            <div class="cert-tag-mini">La pesada para data + IA</div>
+          </div>
+          <div class="cert-quick-meta">120 min<br>60 preg.</div>
+          <div class="cert-toggle">+</div>
+        </summary>
+        <div class="cert-detail">
+          <p class="cert-pitch">Diseño y gestión de pipelines de datos a escala. BigQuery avanzado, Dataflow, Pub/Sub, Dataproc, ML básico. Una de las certs <strong>más valoradas para perfiles de datos</strong>.</p>
+          <div class="specs">
+            <div class="spec-item"><div class="spec-label">Duración</div><div class="spec-value">120 min</div></div>
+            <div class="spec-item"><div class="spec-label">Preguntas</div><div class="spec-value">60</div></div>
+            <div class="spec-item"><div class="spec-label">Aprobado</div><div class="spec-value">70%</div></div>
+            <div class="spec-item"><div class="spec-label">Estudio</div><div class="spec-value">3–4 meses</div></div>
+          </div>
+          <div class="who-row">
+            <div class="who-pixel"><span></span><span></span><span></span><span></span></div>
+            <div class="who-text">
+              <strong>Para quién encaja</strong>
+              Perfiles data e IA con experiencia en pipelines y trabajo con datasets grandes.
+            </div>
+          </div>
+          <div class="cert-links">
+            <a href="https://cloud.google.com/certification/data-engineer" class="cert-link primary" target="_blank" rel="noopener">Página oficial <span class="arrow">↗</span></a>
+            <a href="https://www.skills.google/paths/16" class="cert-link" target="_blank" rel="noopener">Learning path gratuito <span class="arrow">↗</span></a>
+            <a href="https://cloud.google.com/learn/certification/guides/professional-data-engineer" class="cert-link" target="_blank" rel="noopener">Guía de examen <span class="arrow">↗</span></a>
+          </div>
+        </div>
+      </details>
+
+      <details class="cert">
+        <summary class="cert-summary">
+          <div class="cert-icon icon-prof">P</div>
+          <div>
+            <div class="cert-title-mini">Cloud DevOps Engineer</div>
+            <div class="cert-tag-mini">SRE y automatización</div>
+          </div>
+          <div class="cert-quick-meta">120 min<br>50–60 preg.</div>
+          <div class="cert-toggle">+</div>
+        </summary>
+        <div class="cert-detail">
+          <p class="cert-pitch">CI/CD, SRE, observabilidad, gestión de incidentes, optimización de coste y seguridad operativa. Cubre Cloud Build, Cloud Deploy, GKE y prácticas SRE de Google.</p>
+          <div class="specs">
+            <div class="spec-item"><div class="spec-label">Duración</div><div class="spec-value">120 min</div></div>
+            <div class="spec-item"><div class="spec-label">Preguntas</div><div class="spec-value">50–60</div></div>
+            <div class="spec-item"><div class="spec-label">Aprobado</div><div class="spec-value">70%</div></div>
+            <div class="spec-item"><div class="spec-label">Estudio</div><div class="spec-value">3 meses</div></div>
+          </div>
+          <div class="who-row">
+            <div class="who-pixel"><span></span><span></span><span></span><span></span></div>
+            <div class="who-text">
+              <strong>Para quién encaja</strong>
+              Perfiles devops y arquitectura con experiencia en producción.
+            </div>
+          </div>
+          <div class="cert-links">
+            <a href="https://cloud.google.com/certification/cloud-devops-engineer" class="cert-link primary" target="_blank" rel="noopener">Página oficial <span class="arrow">↗</span></a>
+            <a href="https://www.skills.google/paths/20" class="cert-link" target="_blank" rel="noopener">Learning path gratuito <span class="arrow">↗</span></a>
+            <a href="https://cloud.google.com/learn/certification/guides/cloud-devops-engineer" class="cert-link" target="_blank" rel="noopener">Guía de examen <span class="arrow">↗</span></a>
+          </div>
+        </div>
+      </details>
+
+      <details class="cert">
+        <summary class="cert-summary">
+          <div class="cert-icon icon-prof">P</div>
+          <div>
+            <div class="cert-title-mini">Machine Learning Engineer</div>
+            <div class="cert-tag-mini">La técnica de IA</div>
+          </div>
+          <div class="cert-quick-meta">120 min<br>50–60 preg.</div>
+          <div class="cert-toggle">+</div>
+        </summary>
+        <div class="cert-detail">
+          <p class="cert-pitch">Diseño, desarrollo y puesta en producción de modelos ML. Vertex AI, AutoML, MLOps, IA responsable. Es <strong>la cert que Inetum necesita en cantidad</strong> para conseguir la Generative AI Specialization.</p>
+          <div class="specs">
+            <div class="spec-item"><div class="spec-label">Duración</div><div class="spec-value">120 min</div></div>
+            <div class="spec-item"><div class="spec-label">Preguntas</div><div class="spec-value">50–60</div></div>
+            <div class="spec-item"><div class="spec-label">Aprobado</div><div class="spec-value">70%</div></div>
+            <div class="spec-item"><div class="spec-label">Estudio</div><div class="spec-value">3–4 meses</div></div>
+          </div>
+          <div class="who-row">
+            <div class="who-pixel"><span></span><span></span><span></span><span></span></div>
+            <div class="who-text">
+              <strong>Para quién encaja</strong>
+              Perfiles IA y data con experiencia en ML/Python.
+            </div>
+          </div>
+          <div class="cert-links">
+            <a href="https://cloud.google.com/certification/machine-learning-engineer" class="cert-link primary" target="_blank" rel="noopener">Página oficial <span class="arrow">↗</span></a>
+            <a href="https://www.skills.google/paths/17" class="cert-link" target="_blank" rel="noopener">Learning path gratuito <span class="arrow">↗</span></a>
+            <a href="https://cloud.google.com/learn/certification/guides/machine-learning-engineer" class="cert-link" target="_blank" rel="noopener">Guía de examen <span class="arrow">↗</span></a>
+          </div>
+        </div>
+      </details>
+
+      <details class="cert">
+        <summary class="cert-summary">
+          <div class="cert-icon icon-prof">P</div>
+          <div>
+            <div class="cert-title-mini">Cloud Security Engineer</div>
+            <div class="cert-tag-mini">Seguridad GCP especializada</div>
+          </div>
+          <div class="cert-quick-meta">120 min<br>50–60 preg.</div>
+          <div class="cert-toggle">+</div>
+        </summary>
+        <div class="cert-detail">
+          <p class="cert-pitch">Diseño y operación de soluciones de seguridad en GCP. IAM avanzado, redes seguras, protección de datos, compliance, gestión de claves.</p>
+          <div class="specs">
+            <div class="spec-item"><div class="spec-label">Duración</div><div class="spec-value">120 min</div></div>
+            <div class="spec-item"><div class="spec-label">Preguntas</div><div class="spec-value">50–60</div></div>
+            <div class="spec-item"><div class="spec-label">Aprobado</div><div class="spec-value">70%</div></div>
+            <div class="spec-item"><div class="spec-label">Estudio</div><div class="spec-value">3 meses</div></div>
+          </div>
+          <div class="who-row">
+            <div class="who-pixel"><span></span><span></span><span></span><span></span></div>
+            <div class="who-text">
+              <strong>Para quién encaja</strong>
+              Perfiles de seguridad y redes con experiencia previa.
+            </div>
+          </div>
+          <div class="cert-links">
+            <a href="https://cloud.google.com/certification/cloud-security-engineer" class="cert-link primary" target="_blank" rel="noopener">Página oficial <span class="arrow">↗</span></a>
+            <a href="https://www.skills.google/paths/19" class="cert-link" target="_blank" rel="noopener">Learning path gratuito <span class="arrow">↗</span></a>
+            <a href="https://cloud.google.com/learn/certification/guides/professional-cloud-security-engineer" class="cert-link" target="_blank" rel="noopener">Guía de examen <span class="arrow">↗</span></a>
+          </div>
+        </div>
+      </details>
+
+      <details class="cert">
+        <summary class="cert-summary">
+          <div class="cert-icon icon-prof">P</div>
+          <div>
+            <div class="cert-title-mini">Cloud Network Engineer</div>
+            <div class="cert-tag-mini">Redes en GCP</div>
+          </div>
+          <div class="cert-quick-meta">120 min<br>50–60 preg.</div>
+          <div class="cert-toggle">+</div>
+        </summary>
+        <div class="cert-detail">
+          <p class="cert-pitch">Diseño de redes en GCP: VPCs, interconnect, hybrid cloud, balanceadores, DNS, troubleshooting. Cubre seis dominios bien diferenciados.</p>
+          <div class="specs">
+            <div class="spec-item"><div class="spec-label">Duración</div><div class="spec-value">120 min</div></div>
+            <div class="spec-item"><div class="spec-label">Preguntas</div><div class="spec-value">50–60</div></div>
+            <div class="spec-item"><div class="spec-label">Aprobado</div><div class="spec-value">70%</div></div>
+            <div class="spec-item"><div class="spec-label">Estudio</div><div class="spec-value">3 meses</div></div>
+          </div>
+          <div class="who-row">
+            <div class="who-pixel"><span></span><span></span><span></span><span></span></div>
+            <div class="who-text">
+              <strong>Para quién encaja</strong>
+              Perfiles de redes e infraestructura.
+            </div>
+          </div>
+          <div class="cert-links">
+            <a href="https://cloud.google.com/certification/cloud-network-engineer" class="cert-link primary" target="_blank" rel="noopener">Página oficial <span class="arrow">↗</span></a>
+            <a href="https://www.skills.google/paths/13" class="cert-link" target="_blank" rel="noopener">Learning path gratuito <span class="arrow">↗</span></a>
+            <a href="https://cloud.google.com/learn/certification/guides/professional-cloud-network-engineer" class="cert-link" target="_blank" rel="noopener">Guía de examen <span class="arrow">↗</span></a>
+          </div>
+        </div>
+      </details>
+
+    </div>
+  </div>
+</div>
+
+<!-- =====================================================
+     TIMELINE
+     ===================================================== -->
+<div class="timeline-section">
+  <div class="timeline-inner">
+    <div class="section-head">
+      <span class="eyebrow">Hoja de ruta</span>
+      <h2 class="section-title">Tu eliges tu <em>plan de carrera</em></h2>
+      <p class="section-sub">Las fechas son <strong style="color: var(--i-yellow); font-weight: 600;">totalmente orientativas</strong>. Cada uno elige la fecha límite que quiera según su disponibilidad y carga de trabajo. Lo importante es el orden, no el calendario.</p>
+    </div>
+    <div class="timeline-grid">
+      <div class="tl-card">
+        <div class="tl-num">Hito 1 · Foundational</div>
+        <div class="tl-title">Empieza por aquí</div>
+        <p class="tl-text">Si tu perfil es de negocio o no muy técnico → <strong>Cloud Digital Leader</strong>. Si te interesa la IA → <strong>Generative AI Leader</strong>. Tú eliges cuándo.</p>
+      </div>
+      <div class="tl-card">
+        <div class="tl-num">Hito 2 · Associate</div>
+        <div class="tl-title">Si quieres seguir</div>
+        <p class="tl-text">Suma una <strong>Cloud Engineer</strong> (la más universal) o <strong>Data Practitioner</strong> si tu día a día va de datos.</p>
+      </div>
+      <div class="tl-card">
+        <div class="tl-num">Hito 3 · Professional</div>
+        <div class="tl-title">Especialízate</div>
+        <p class="tl-text">Según tu perfil real: <strong>Architect, Developer, Data Engineer, ML Engineer, DevOps</strong></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- =====================================================
+     HOW-TO — Cómo se saca una certificación paso a paso
+     ===================================================== -->
+<div class="section">
+  <div class="section-head">
+    <span class="eyebrow">Guía práctica</span>
+    <h2 class="section-title">Cómo se saca una <em>certificación</em></h2>
+    <p class="section-sub">No es un curso de los típicos: tú estudias por tu cuenta y luego haces un examen oficial. Estos son los pasos.</p>
+  </div>
+
+  <div class="howto-section">
+
+    <div class="howto-intro">
+      <p>La idea clave: <strong>el path formativo y el examen son dos cosas distintas</strong>. El path es gratis y autoguiado en Google Cloud Skills Boost. El examen es de pago (lo cubre Inetum), oficial y proctorizado. Lo único que cuenta para el partnership de Inetum con Google es <strong>aprobar el examen</strong>.</p>
+    </div>
+
+    <div class="steps-grid">
+
+      <div class="step-card step-card-wide">
+        <div class="step-num">1</div>
+        <div class="step-title">Elige tu certificación según tu perfil</div>
+        <div class="step-text">Esta es la matriz de las 16 certificaciones de Google Cloud, agrupadas por nivel y mapeadas con los perfiles internos. La columna <strong>AS IS</strong> es lo que tenemos hoy en Inetum. Pincha en cualquier nombre para ir a su página oficial.</div>
+
+        <div class="cert-matrix-wrap">
+        <table class="cert-matrix">
+          <thead>
+            <tr>
+              <th class="col-tipo">Tipos</th>
+              <th class="col-perfil-desc">Perfil</th>
+              <th class="col-name">Nombre de la certificación</th>
+              <th class="col-num">AS IS</th>
+              <th class="col-num">TO BE</th>
+              <th class="col-x">IA</th>
+              <th class="col-x">Negocio</th>
+              <th class="col-x">Data</th>
+              <th class="col-x">Arch</th>
+              <th class="col-x">DevOps</th>
+              <th class="col-x">Seguridad<br>/ Redes</th>
+              <th class="col-x">Workspace</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- ===== FOUNDATIONAL ===== -->
+            <tr class="group-row">
+              <td rowspan="3" class="tipo-cell tipo-found">
+                <div class="tipo-badge">F</div>
+                <div class="tipo-name">Foundational</div>
+              </td>
+              <td rowspan="3" class="perfil-cell">Conocimientos fundamentales cloud. No hay requisitos técnicos previos.</td>
+              <td class="name-cell"><a href="https://cloud.google.com/learn/certification/cloud-digital-leader" target="_blank" rel="noopener">Cloud Digital Leader</a></td>
+              <td class="num-cell num-asis">9</td>
+              <td class="num-cell num-tobe">—</td>
+              <td class="x-cell"><span class="x-mark">×</span></td>
+              <td class="x-cell"><span class="x-mark">×</span></td>
+              <td class="x-cell"><span class="x-mark">×</span></td>
+              <td class="x-cell"><span class="x-mark">×</span></td>
+              <td class="x-cell"><span class="x-mark">×</span></td>
+              <td class="x-cell"><span class="x-mark">×</span></td>
+              <td class="x-cell"><span class="x-mark">×</span></td>
+            </tr>
+            <tr>
+              <td class="name-cell"><a href="https://cloud.google.com/learn/certification/generative-ai-leader" target="_blank" rel="noopener">Generative AI Leader</a></td>
+              <td class="num-cell num-asis">4</td>
+              <td class="num-cell num-tobe">—</td>
+              <td class="x-cell"><span class="x-mark">×</span></td>
+              <td class="x-cell"></td>
+              <td class="x-cell"></td>
+              <td class="x-cell"></td>
+              <td class="x-cell"></td>
+              <td class="x-cell"></td>
+              <td class="x-cell"></td>
+            </tr>
+            <tr class="spacer-row"><td colspan="11"></td></tr>
+
+            <!-- ===== ASSOCIATE ===== -->
+            <tr class="group-row">
+              <td rowspan="3" class="tipo-cell tipo-assoc">
+                <div class="tipo-badge">A</div>
+                <div class="tipo-name">Associate</div>
+              </td>
+              <td rowspan="3" class="perfil-cell">Tiene experiencia en desplegar aplicaciones en la nube y supervisar operaciones / Tiene experiencia en la gestión de soluciones empresariales en la nube.</td>
+              <td class="name-cell"><a href="https://cloud.google.com/certification/cloud-engineer" target="_blank" rel="noopener">Cloud Engineer</a></td>
+              <td class="num-cell num-asis">14</td>
+              <td class="num-cell num-tobe">—</td>
+              <td class="x-cell"><span class="x-mark">×</span></td>
+              <td class="x-cell"></td>
+              <td class="x-cell"></td>
+              <td class="x-cell"><span class="x-mark">×</span></td>
+              <td class="x-cell"></td>
+              <td class="x-cell"></td>
+              <td class="x-cell"></td>
+            </tr>
+            <tr>
+              <td class="name-cell"><a href="https://cloud.google.com/certification/associate-google-workspace-administrator" target="_blank" rel="noopener">Google Workspace Administrator</a></td>
+              <td class="num-cell num-asis num-zero">0</td>
+              <td class="num-cell num-tobe">—</td>
+              <td class="x-cell"></td>
+              <td class="x-cell"></td>
+              <td class="x-cell"></td>
+              <td class="x-cell"></td>
+              <td class="x-cell"></td>
+              <td class="x-cell"></td>
+              <td class="x-cell"><span class="x-mark">×</span></td>
+            </tr>
+            <tr>
+              <td class="name-cell"><a href="https://cloud.google.com/learn/certification/data-practitioner" target="_blank" rel="noopener">Data Practitioner</a></td>
+              <td class="num-cell num-asis num-zero">0</td>
+              <td class="num-cell num-tobe">—</td>
+              <td class="x-cell"></td>
+              <td class="x-cell"></td>
+              <td class="x-cell"><span class="x-mark">×</span></td>
+              <td class="x-cell"></td>
+              <td class="x-cell"></td>
+              <td class="x-cell"></td>
+              <td class="x-cell"></td>
+            </tr>
+            <tr class="spacer-row"><td colspan="11"></td></tr>
+
+            <!-- ===== PROFESSIONAL ===== -->
+            <tr class="group-row">
+              <td rowspan="10" class="tipo-cell tipo-prof">
+                <div class="tipo-badge">P</div>
+                <div class="tipo-name">Professional</div>
+              </td>
+              <td rowspan="10" class="perfil-cell">Tiene mucha experiencia en la configuración de entornos en la nube para una organización / Tiene gran experiencia en el despliegue de servicios y soluciones según los requisitos empresariales.</td>
+              <td class="name-cell"><a href="https://cloud.google.com/certification/cloud-architect" target="_blank" rel="noopener">Cloud Architect</a></td>
+              <td class="num-cell num-asis">8</td>
+              <td class="num-cell num-tobe">—</td>
+              <td class="x-cell"><span class="x-mark">×</span></td>
+              <td class="x-cell"></td>
+              <td class="x-cell"></td>
+              <td class="x-cell"><span class="x-mark">×</span></td>
+              <td class="x-cell"></td>
+              <td class="x-cell"></td>
+              <td class="x-cell"></td>
+            </tr>
+            <tr>
+              <td class="name-cell"><a href="https://cloud.google.com/certification/cloud-database-engineer" target="_blank" rel="noopener">Cloud Database Engineer</a></td>
+              <td class="num-cell num-asis num-zero">0</td>
+              <td class="num-cell num-tobe">—</td>
+              <td class="x-cell"></td>
+              <td class="x-cell"></td>
+              <td class="x-cell"></td>
+              <td class="x-cell"></td>
+              <td class="x-cell"></td>
+              <td class="x-cell"></td>
+              <td class="x-cell"></td>
+            </tr>
+            <tr>
+              <td class="name-cell"><a href="https://cloud.google.com/certification/cloud-developer" target="_blank" rel="noopener">Cloud Developer</a></td>
+              <td class="num-cell num-asis num-zero">0</td>
+              <td class="num-cell num-tobe">—</td>
+              <td class="x-cell"><span class="x-mark">×</span></td>
+              <td class="x-cell"></td>
+              <td class="x-cell"></td>
+              <td class="x-cell"></td>
+              <td class="x-cell"><span class="x-mark">×</span></td>
+              <td class="x-cell"></td>
+              <td class="x-cell"></td>
+            </tr>
+            <tr>
+              <td class="name-cell"><a href="https://cloud.google.com/certification/data-engineer" target="_blank" rel="noopener">Data Engineer</a></td>
+              <td class="num-cell num-asis num-zero">0</td>
+              <td class="num-cell num-tobe">—</td>
+              <td class="x-cell"><span class="x-mark">×</span></td>
+              <td class="x-cell"></td>
+              <td class="x-cell"><span class="x-mark">×</span></td>
+              <td class="x-cell"></td>
+              <td class="x-cell"></td>
+              <td class="x-cell"></td>
+              <td class="x-cell"></td>
+            </tr>
+            <tr>
+              <td class="name-cell"><a href="https://cloud.google.com/certification/cloud-devops-engineer" target="_blank" rel="noopener">Cloud DevOps Engineer</a></td>
+              <td class="num-cell num-asis">1</td>
+              <td class="num-cell num-tobe">—</td>
+              <td class="x-cell"></td>
+              <td class="x-cell"></td>
+              <td class="x-cell"></td>
+              <td class="x-cell"><span class="x-mark">×</span></td>
+              <td class="x-cell"><span class="x-mark">×</span></td>
+              <td class="x-cell"></td>
+              <td class="x-cell"></td>
+            </tr>
+            <tr>
+              <td class="name-cell"><a href="https://cloud.google.com/certification/cloud-security-engineer" target="_blank" rel="noopener">Cloud Security Engineer</a></td>
+              <td class="num-cell num-asis num-zero">0</td>
+              <td class="num-cell num-tobe">—</td>
+              <td class="x-cell"></td>
+              <td class="x-cell"></td>
+              <td class="x-cell"></td>
+              <td class="x-cell"></td>
+              <td class="x-cell"></td>
+              <td class="x-cell"><span class="x-mark">×</span></td>
+              <td class="x-cell"></td>
+            </tr>
+            <tr>
+              <td class="name-cell"><a href="https://cloud.google.com/certification/cloud-network-engineer" target="_blank" rel="noopener">Cloud Network Engineer</a></td>
+              <td class="num-cell num-asis num-zero">0</td>
+              <td class="num-cell num-tobe">—</td>
+              <td class="x-cell"></td>
+              <td class="x-cell"></td>
+              <td class="x-cell"></td>
+              <td class="x-cell"></td>
+              <td class="x-cell"></td>
+              <td class="x-cell"><span class="x-mark">×</span></td>
+              <td class="x-cell"></td>
+            </tr>
+            <tr>
+              <td class="name-cell"><a href="https://cloud.google.com/certification/machine-learning-engineer" target="_blank" rel="noopener">Machine Learning Engineer</a></td>
+              <td class="num-cell num-asis">1</td>
+              <td class="num-cell num-tobe">—</td>
+              <td class="x-cell"><span class="x-mark">×</span></td>
+              <td class="x-cell"></td>
+              <td class="x-cell"><span class="x-mark">×</span></td>
+              <td class="x-cell"></td>
+              <td class="x-cell"></td>
+              <td class="x-cell"></td>
+              <td class="x-cell"></td>
+            </tr>
+            <tr>
+              <td class="name-cell"><a href="https://cloud.google.com/learn/certification/security-operations-engineer" target="_blank" rel="noopener">Security Operations Engineer</a></td>
+              <td class="num-cell num-asis num-zero">0</td>
+              <td class="num-cell num-tobe">—</td>
+              <td class="x-cell"></td>
+              <td class="x-cell"></td>
+              <td class="x-cell"></td>
+              <td class="x-cell"></td>
+              <td class="x-cell"></td>
+              <td class="x-cell"><span class="x-mark">×</span></td>
+              <td class="x-cell"></td>
+            </tr>
+            <tr>
+              <td class="name-cell"><a href="https://chromeenterprise.google/certification/" target="_blank" rel="noopener">ChromeOS Administrator</a></td>
+              <td class="num-cell num-asis">1</td>
+              <td class="num-cell num-tobe">—</td>
+              <td class="x-cell"></td>
+              <td class="x-cell"></td>
+              <td class="x-cell"></td>
+              <td class="x-cell"></td>
+              <td class="x-cell"></td>
+              <td class="x-cell"></td>
+              <td class="x-cell"><span class="x-mark">×</span></td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr class="total-row">
+              <td colspan="3" class="total-label">TOTAL</td>
+              <td class="num-cell total-num">38</td>
+              <td class="num-cell total-num">0</td>
+              <td colspan="7"></td>
+            </tr>
+          </tfoot>
+        </table>
+        </div>
+
+      </div>
+
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <div class="step-title">Lee la guía oficial del examen</div>
+        <div class="step-text">Antes de estudiar nada, abre la <strong>Exam Guide</strong> de tu certificación. Está en la página oficial (botón amarillo en cada card). Te dice exactamente qué temas entran y los porcentajes de cada bloque.</div>
+        <div class="step-tip"><strong>Tip:</strong> imprímela o tenla a mano. Es tu mapa de qué estudiar y qué no.</div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <div class="step-title">Crea cuenta en Google Cloud Skills Boost</div>
+        <div class="step-text">Ve a <a href="https://www.skills.google" target="_blank" rel="noopener">skills.google</a> con tu cuenta de Google (mejor la corporativa de Inetum). Es <strong>gratis</strong> y ahí están todos los learning paths oficiales con cursos, vídeos y labs.</div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num">4</div>
+        <div class="step-title">Sigue el learning path</div>
+        <div class="step-text">Cada certificación tiene su path con cursos, vídeos y "Try It" hands-on. Avanzas a tu ritmo: las Foundationals son <strong>~8 horas de contenido</strong>; las Professional pueden llegar a 60-80 horas. Los quizzes intermedios son oro.</div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num">5</div>
+        <div class="step-title">Haz las preguntas de muestra</div>
+        <div class="step-text">Google publica <strong>sample questions</strong> oficiales en cada página de cert. Hazlas varias veces hasta que las saques todas. Si fallas alguna, lee por qué la correcta lo es <em>y</em> por qué las otras no.</div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num">6</div>
+        <div class="step-title">Reserva el examen</div>
+        <div class="step-text">Desde la página oficial, "Register". Eliges <strong>online proctored</strong> (desde casa, con webcam) o <strong>presencial</strong> (centro acreditado). Inetum cubre el coste — confirma con tu responsable antes de pagar.</div>
+        <div class="step-tip"><strong>Online:</strong> escritorio despejado, sin papeles, ID a mano, conexión estable. Te grabarán todo el examen.</div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num">7</div>
+        <div class="step-title">Haz el examen</div>
+        <div class="step-text">Tipo test, 50-60 preguntas, 90-120 min según nivel. Necesitas ~70% para aprobar (75% en Generative AI Leader). El resultado <strong>provisional</strong> sale al instante; el oficial llega por email en 7-10 días.</div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num">8</div>
+        <div class="step-title">Asocia el certificado a Inetum</div>
+        <div class="step-text">Paso <strong>crítico</strong>. En <a href="https://www.certmetrics.com/googlecloud" target="_blank" rel="noopener">CertMetrics</a> → Perfil → Afiliación Profesional → añade tu correo <code>@inetum.com</code> y elige "Socio". Sin esto la cert no cuenta para el partnership.</div>
+        <div class="step-tip"><strong>Después:</strong> sube el certificado a Talaris y avisa a tu responsable.</div>
+      </div>
+
+    </div>
+
+    <!-- ZOOM en las dos Foundationals -->
+    <div class="howto-foundationals" id="foundationals">
+      <div class="howto-foundationals-head">
+        <span class="eyebrow">Lo ideal para un perfil consultor</span>
+        <h3>Por dónde empezar</h3>
+        <p style="font-size:14px;color:var(--ink-3);margin-top:10px;max-width:560px;margin-left:auto;margin-right:auto;">Para alguien de consultoría/negocio, la ruta natural son las <strong style="color:var(--ink-1);">dos Foundationals</strong>: te dan vocabulario y criterio sin requerir background técnico. Total: 2-3 meses, ~18-20 horas reales.</p>
+      </div>
+
+      <div class="found-grid">
+
+        <!-- Cloud Digital Leader -->
+        <div class="found-card">
+          <div class="found-card-head">
+            <div class="found-icon">F</div>
+            <div>
+              <h4>Cloud Digital Leader</h4>
+              <div>≈$99 · 90 min · 50-60 preguntas · 70% aprobado · 1-2 meses estudio</div>
+            </div>
+          </div>
+          <ol class="found-stages">
+            <li><strong>Lee la exam guide.</strong> 6 dominios: cloud digital transformation, Google Cloud infrastructure & application modernization, data innovation, AI, security & operations. <span class="when">Día 1</span></li>
+            <li><strong>Path en Skills Boost.</strong> "Cloud Digital Leader Learning Path" — 8 módulos, ~10 horas de contenido. <span class="when">Sem 1-2</span></li>
+            <li><strong>Vídeos y try-its.</strong> Sin labs hands-on aquí: es conceptual. Los vídeos breves bastan. <span class="when">Sem 2-3</span></li>
+            <li><strong>Sample questions oficiales</strong> + lectura del <a href="https://services.google.com/fh/files/misc/cloud_digital_leader_exam_guide_english.pdf" target="_blank" rel="noopener">PDF de exam guide</a>. <span class="when">Sem 3-4</span></li>
+            <li><strong>Reserva examen + hazlo.</strong> Disponible en español. <span class="when">Sem 4-6</span></li>
+            <li><strong>Asocia a Inetum</strong> en CertMetrics y sube cert a Talaris. <span class="when">Día +1</span></li>
+          </ol>
+          <div class="found-cta">
+            <a href="https://cloud.google.com/learn/certification/cloud-digital-leader" class="cert-link primary" target="_blank" rel="noopener">Empezar aquí <span class="arrow">↗</span></a>
+            <a href="https://www.skills.google/paths/9" class="cert-link" target="_blank" rel="noopener">Learning path <span class="arrow">↗</span></a>
+          </div>
+        </div>
+
+        <!-- Generative AI Leader -->
+        <div class="found-card">
+          <div class="found-card-head">
+            <div class="found-icon">F</div>
+            <div>
+              <h4>Generative AI Leader</h4>
+              <div>≈$99 · 90 min · 50-60 preguntas · 75% aprobado · 2-4 semanas estudio</div>
+            </div>
+          </div>
+          <ol class="found-stages">
+            <li><strong>Lee la exam guide.</strong> 4 bloques: fundamentos de gen AI (~30%), oferta gen AI de Google Cloud (~35%), técnicas para mejorar outputs, estrategia de negocio. <span class="when">Día 1</span></li>
+            <li><strong>Path en Skills Boost.</strong> "Generative AI Leader Learning Path" — 5 módulos, ~8 horas. Cubre Gemini, NotebookLM, Vertex AI, AI Studio. <span class="when">Sem 1</span></li>
+            <li><strong>Try-its hands-on.</strong> Aquí sí hay actividades prácticas con Gemini app, NotebookLM y AI Studio. Hazlas todas. <span class="when">Sem 1-2</span></li>
+            <li><strong>Quizzes y sample questions</strong> + el <a href="https://services.google.com/fh/files/misc/generative_ai_leader_study_guide_english.pdf" target="_blank" rel="noopener">study guide PDF oficial</a> (50 páginas, muy claro). <span class="when">Sem 2</span></li>
+            <li><strong>Reserva examen + hazlo.</strong> Disponible en español. Ojo al 75% de aprobado, es más exigente. <span class="when">Sem 3-4</span></li>
+            <li><strong>Asocia a Inetum</strong> en CertMetrics y sube cert a Talaris. <span class="when">Día +1</span></li>
+          </ol>
+          <div class="found-cta">
+            <a href="https://cloud.google.com/learn/certification/generative-ai-leader" class="cert-link primary" target="_blank" rel="noopener">Empezar aquí <span class="arrow">↗</span></a>
+            <a href="https://www.skills.google/paths/1951" class="cert-link" target="_blank" rel="noopener">Learning path <span class="arrow">↗</span></a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="howto-intro" style="margin-top:32px;margin-bottom:0;">
+        <p style="font-size:13px;color:var(--ink-3);"><strong style="color:var(--ink-1);">Recomendación:</strong> primero <strong>Cloud Digital Leader</strong> (te da el contexto general de GCP) y después <strong>Generative AI Leader</strong> (más fácil con la base ya hecha).</p>
+      </div>
+
+    </div>
+
+    <!-- ==== Y EL RESTO: zooms resumidos para Associate y Professional ==== -->
+    <div class="howto-foundationals" style="margin-top:32px;padding-top:32px;">
+      <div class="howto-foundationals-head">
+        <span class="eyebrow" style="color:var(--ink-3);">El resto de niveles</span>
+        <h3 style="font-size:22px;">Para perfiles más técnicos</h3>
+        <p style="font-size:13px;color:var(--ink-3);margin-top:8px;max-width:580px;margin-left:auto;margin-right:auto;">Si tu rol es técnico (data, devops, arquitectura, IA, seguridad…) tras la Foundational viene el salto al nivel Associate y luego Professional. Aquí la ruta resumida de cada una.</p>
+      </div>
+
+      <!-- Bloque ASSOCIATE -->
+      <div style="margin-bottom:28px;">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--line);">
+          <span style="display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:8px;background:var(--i-yellow);color:var(--ink-1);font-weight:700;font-size:13px;">A</span>
+          <span style="font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-3);">Nivel · Associate</span>
+          <span style="font-size:11px;color:var(--ink-3);margin-left:auto;">~$125 · 120 min · 6 meses exp · 3 años</span>
+        </div>
+
+        <div class="mini-cert-grid">
+
+          <div class="mini-cert">
+            <div class="mini-cert-name">Cloud Engineer</div>
+            <div class="mini-cert-desc">Despliegue y operación en GCP. Base técnica para todas las Professional.</div>
+            <ol class="mini-stages">
+              <li>Exam guide → 5 dominios (compute, almacenamiento, redes, IAM, monitor)</li>
+              <li>Learning path Skills Boost (~40h, con labs reales en consola y gcloud)</li>
+              <li>Hands-on: Qwiklabs imprescindibles, no es solo teoría</li>
+              <li>Sample questions + practice exam (de pago, $40, opcional pero útil)</li>
+              <li>Examen + asociar a Inetum</li>
+            </ol>
+            <div class="mini-cta">
+              <a href="https://cloud.google.com/certification/cloud-engineer" class="cert-link primary" target="_blank" rel="noopener">Empezar aquí <span class="arrow">↗</span></a>
+              <a href="https://www.skills.google/paths/11" class="cert-link" target="_blank" rel="noopener">Path <span class="arrow">↗</span></a>
+            </div>
+          </div>
+
+          <div class="mini-cert">
+            <div class="mini-cert-name">Workspace Administrator</div>
+            <div class="mini-cert-desc">Administración de Google Workspace: cuentas, seguridad, dispositivos, compliance.</div>
+            <ol class="mini-stages">
+              <li>Exam guide → gestión de usuarios, mail flow, seguridad, compliance</li>
+              <li>Learning path Skills Boost (~25h)</li>
+              <li>Hands-on con consola de admin Workspace (acceso a tenant de prueba)</li>
+              <li>Sample questions oficiales</li>
+              <li>Examen + asociar a Inetum</li>
+            </ol>
+            <div class="mini-cta">
+              <a href="https://cloud.google.com/certification/associate-google-workspace-administrator" class="cert-link primary" target="_blank" rel="noopener">Empezar aquí <span class="arrow">↗</span></a>
+              <a href="https://www.skills.google/paths/1318" class="cert-link" target="_blank" rel="noopener">Path <span class="arrow">↗</span></a>
+            </div>
+          </div>
+
+          <div class="mini-cert">
+            <div class="mini-cert-name">Data Practitioner</div>
+            <div class="mini-cert-desc">Fundamentos de data en GCP: BigQuery, Cloud Storage, Looker, Dataflow.</div>
+            <ol class="mini-stages">
+              <li>Exam guide → preparación, análisis, orquestación, gestión de datos</li>
+              <li>Learning path Skills Boost (~30h)</li>
+              <li>Hands-on en BigQuery: queries, datasets públicos, Looker Studio</li>
+              <li>Sample questions oficiales</li>
+              <li>Examen + asociar a Inetum</li>
+            </ol>
+            <div class="mini-cta">
+              <a href="https://cloud.google.com/learn/certification/data-practitioner" class="cert-link primary" target="_blank" rel="noopener">Empezar aquí <span class="arrow">↗</span></a>
+              <a href="https://www.skills.google/paths/1788" class="cert-link" target="_blank" rel="noopener">Path <span class="arrow">↗</span></a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Bloque PROFESSIONAL -->
+      <div>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--line);">
+          <span style="display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:8px;background:var(--ink-1);color:var(--i-yellow);font-weight:700;font-size:13px;">P</span>
+          <span style="font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-3);">Nivel · Professional</span>
+          <span style="font-size:11px;color:var(--ink-3);margin-left:auto;">~$200 · 120 min · 3 años exp · 2 años</span>
+        </div>
+
+        <div class="mini-cert-grid">
+
+          <div class="mini-cert">
+            <div class="mini-cert-name">Cloud Architect</div>
+            <div class="mini-cert-desc">La más demandada del mercado. Diseño de soluciones cloud end-to-end.</div>
+            <ol class="mini-stages">
+              <li>Pre-requisito recomendado: Cloud Engineer aprobado</li>
+              <li>Exam guide + 4 case studies oficiales (memorizarlos bien)</li>
+              <li>Learning path Skills Boost (~60h)</li>
+              <li>Practice exam oficial (muy recomendado, $40)</li>
+              <li>Examen + asociar a Inetum</li>
+            </ol>
+            <div class="mini-cta">
+              <a href="https://cloud.google.com/certification/cloud-architect" class="cert-link primary" target="_blank" rel="noopener">Empezar aquí <span class="arrow">↗</span></a>
+              <a href="https://www.skills.google/paths/12" class="cert-link" target="_blank" rel="noopener">Path <span class="arrow">↗</span></a>
+            </div>
+          </div>
+
+          <div class="mini-cert">
+            <div class="mini-cert-name">Cloud Developer</div>
+            <div class="mini-cert-desc">Aplicaciones cloud-native. Cloud Run, GKE, APIs, CI/CD. Code-heavy.</div>
+            <ol class="mini-stages">
+              <li>Pre-requisito recomendado: Cloud Engineer + experiencia con Python o Go</li>
+              <li>Exam guide → diseño, build, deploy, integración, gestión de apps</li>
+              <li>Learning path Skills Boost (~50h, con bastante código)</li>
+              <li>Hands-on Cloud Run + GKE intensivo</li>
+              <li>Sample + practice exam → Examen + asociar a Inetum</li>
+            </ol>
+            <div class="mini-cta">
+              <a href="https://cloud.google.com/certification/cloud-developer" class="cert-link primary" target="_blank" rel="noopener">Empezar aquí <span class="arrow">↗</span></a>
+              <a href="https://www.skills.google/paths/14" class="cert-link" target="_blank" rel="noopener">Path <span class="arrow">↗</span></a>
+            </div>
+          </div>
+
+          <div class="mini-cert">
+            <div class="mini-cert-name">Data Engineer</div>
+            <div class="mini-cert-desc">Pipelines de datos a escala: BigQuery avanzado, Dataflow, Pub/Sub, ML básico.</div>
+            <ol class="mini-stages">
+              <li>Pre-requisito recomendado: Data Practitioner + SQL avanzado</li>
+              <li>Exam guide → diseño, build, operación, ML</li>
+              <li>Learning path Skills Boost (~70h)</li>
+              <li>Hands-on Dataflow + Dataproc + BigQuery con datasets reales</li>
+              <li>Sample + practice exam → Examen + asociar a Inetum</li>
+            </ol>
+            <div class="mini-cta">
+              <a href="https://cloud.google.com/certification/data-engineer" class="cert-link primary" target="_blank" rel="noopener">Empezar aquí <span class="arrow">↗</span></a>
+              <a href="https://www.skills.google/paths/16" class="cert-link" target="_blank" rel="noopener">Path <span class="arrow">↗</span></a>
+            </div>
+          </div>
+
+          <div class="mini-cert">
+            <div class="mini-cert-name">Cloud DevOps Engineer</div>
+            <div class="mini-cert-desc">SRE y automatización. CI/CD, observabilidad, gestión de incidentes.</div>
+            <ol class="mini-stages">
+              <li>Pre-requisito recomendado: Cloud Engineer + experiencia ops/SRE</li>
+              <li>Exam guide → SRE, build, deploy, monitor, incident response</li>
+              <li>Learning path Skills Boost (~50h)</li>
+              <li>Hands-on Cloud Build + Cloud Deploy + GKE</li>
+              <li>Sample + practice exam → Examen + asociar a Inetum</li>
+            </ol>
+            <div class="mini-cta">
+              <a href="https://cloud.google.com/certification/cloud-devops-engineer" class="cert-link primary" target="_blank" rel="noopener">Empezar aquí <span class="arrow">↗</span></a>
+              <a href="https://www.skills.google/paths/20" class="cert-link" target="_blank" rel="noopener">Path <span class="arrow">↗</span></a>
+            </div>
+          </div>
+
+          <div class="mini-cert">
+            <div class="mini-cert-name">Machine Learning Engineer</div>
+            <div class="mini-cert-desc">La técnica de IA. Vertex AI, AutoML, MLOps. La que más necesita Inetum.</div>
+            <ol class="mini-stages">
+              <li>Pre-requisito recomendado: Cloud Engineer + Python + bases de ML</li>
+              <li>Exam guide → frame problem, build, deploy, monitor, responsible AI</li>
+              <li>Learning path Skills Boost (~70h, con MLOps + IA generativa)</li>
+              <li>Hands-on Vertex AI + Notebooks + pipelines</li>
+              <li>Sample + practice exam → Examen + asociar a Inetum</li>
+            </ol>
+            <div class="mini-cta">
+              <a href="https://cloud.google.com/certification/machine-learning-engineer" class="cert-link primary" target="_blank" rel="noopener">Empezar aquí <span class="arrow">↗</span></a>
+              <a href="https://www.skills.google/paths/17" class="cert-link" target="_blank" rel="noopener">Path <span class="arrow">↗</span></a>
+            </div>
+          </div>
+
+          <div class="mini-cert">
+            <div class="mini-cert-name">Cloud Security Engineer</div>
+            <div class="mini-cert-desc">IAM avanzado, redes seguras, protección de datos, compliance, KMS.</div>
+            <ol class="mini-stages">
+              <li>Pre-requisito recomendado: Cloud Engineer + experiencia en seguridad</li>
+              <li>Exam guide → IAM, network security, data protection, compliance, ops</li>
+              <li>Learning path Skills Boost (~50h)</li>
+              <li>Hands-on IAM avanzado + VPC Service Controls + KMS</li>
+              <li>Sample + practice exam → Examen + asociar a Inetum</li>
+            </ol>
+            <div class="mini-cta">
+              <a href="https://cloud.google.com/certification/cloud-security-engineer" class="cert-link primary" target="_blank" rel="noopener">Empezar aquí <span class="arrow">↗</span></a>
+              <a href="https://www.skills.google/paths/19" class="cert-link" target="_blank" rel="noopener">Path <span class="arrow">↗</span></a>
+            </div>
+          </div>
+
+          <div class="mini-cert">
+            <div class="mini-cert-name">Cloud Network Engineer</div>
+            <div class="mini-cert-desc">VPCs, Interconnect, hybrid cloud, balanceadores, DNS, troubleshooting.</div>
+            <ol class="mini-stages">
+              <li>Pre-requisito recomendado: Cloud Engineer + bases de redes (CCNA-style)</li>
+              <li>Exam guide → 6 dominios bien diferenciados</li>
+              <li>Learning path Skills Boost (~50h)</li>
+              <li>Hands-on VPC + Cloud Interconnect + Cloud Load Balancing</li>
+              <li>Sample + practice exam → Examen + asociar a Inetum</li>
+            </ol>
+            <div class="mini-cta">
+              <a href="https://cloud.google.com/certification/cloud-network-engineer" class="cert-link primary" target="_blank" rel="noopener">Empezar aquí <span class="arrow">↗</span></a>
+              <a href="https://www.skills.google/paths/13" class="cert-link" target="_blank" rel="noopener">Path <span class="arrow">↗</span></a>
+            </div>
+          </div>
+
+          <div class="mini-cert">
+            <div class="mini-cert-name">Cloud Database Engineer</div>
+            <div class="mini-cert-desc">Diseño y gestión de bases de datos en GCP: Cloud SQL, Spanner, AlloyDB.</div>
+            <ol class="mini-stages">
+              <li>Pre-requisito recomendado: experiencia en bases de datos relacionales</li>
+              <li>Exam guide → diseño, migración, deploy, gestión de incidentes</li>
+              <li>Learning path Skills Boost (~40h)</li>
+              <li>Hands-on Cloud SQL + Spanner + AlloyDB</li>
+              <li>Sample + practice exam → Examen + asociar a Inetum</li>
+            </ol>
+            <div class="mini-cta">
+              <a href="https://cloud.google.com/certification/cloud-database-engineer" class="cert-link primary" target="_blank" rel="noopener">Empezar aquí <span class="arrow">↗</span></a>
+              <a href="https://www.skills.google/paths/183" class="cert-link" target="_blank" rel="noopener">Path <span class="arrow">↗</span></a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<!-- =====================================================
+     FAQ
+     ===================================================== -->
+<div class="section">
+  <div class="section-head">
+    <span class="eyebrow">Preguntas frecuentes</span>
+    <h2 class="section-title">Dudas habituales</h2>
+  </div>
+  <div class="faq-grid">
+    <div class="faq-item">
+      <div class="faq-q">¿Tengo que pagar yo el examen?</div>
+      <div class="faq-a">No. Inetum cubre el examen y los cursos preparatorios. Solo tienes que confirmar qué quieres preparar y para cuándo.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">¿Qué pasa si suspendo?</div>
+      <div class="faq-a">14 días de espera para el segundo intento, 60 días para el tercero. Recibes un informe con qué dominios te flojearon. Solo se notifica pass/fail.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">¿El examen es online o presencial?</div>
+      <div class="faq-a">Las dos opciones están disponibles. Online proctored desde casa con webcam y setup limpio, o presencial en centro acreditado.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">¿En qué idioma es el examen?</div>
+      <div class="faq-a">La mayoría en inglés. Algunas tienen otros idiomas, en el caso de las dos formaciones de Foundational, existe la opción en español . La preparación oficial está siempre en inglés.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">¿Cuánto duran las certificaciones?</div>
+      <div class="faq-a">Foundational y Associate: 3 años. Professional: 2 años. Para mantenerlas hay que volver a pasar el examen.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">¿Tengo que asociar el certificado a Inetum?</div>
+      <div class="faq-a">Sí, es clave. En CertMetrics → Perfil → Afiliación Profesional, añade tu correo corporativo y selecciona "Socio". Si no, no cuenta para el partnership.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">¿Hay material gratis?</div>
+      <div class="faq-a">Sí. Google Cloud Skills Boost ofrece paths formativos gratuitos por certificación con labs prácticos. Inetum nos da acceso.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">¿Y si ya tengo una certificación?</div>
+      <div class="faq-a">Avisa al responsable de tu área. Si está vigente y en Talaris, ya cuenta. Si no la has asociado a Inetum, hay que hacerlo.</div>
+    </div>
+  </div>
+</div>
+
+<!-- =====================================================
+     FOOTER
+     ===================================================== -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="pixel-arrow">
+        <span></span><span></span><span></span><span></span>
+      </span>
+      Inetum
+      <div class="divider"></div>
+      <span class="partner">Google Cloud Partner</span>
+    </div>
+    <div class="footer-meta">PLAN DE FORMACIÓN · 2026 - 2027</div>
+  </div>
+</footer>
+
+</body>
+</html>
